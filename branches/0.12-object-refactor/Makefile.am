@@ -1,0 +1,9 @@
+ACLOCAL_AMFLAGS = -I .
+
+if BUILD_RPM
+SUBDIRS=dist src
+DIST_SUBDIRS=dist src
+else
+SUBDIRS=src
+DIST_SUBDIRS=src
+endif
