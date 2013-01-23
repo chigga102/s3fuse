@@ -37,6 +37,8 @@ cd * || die "Failed to enter source dir."
 cp -r $PKG_DIR/debian . || die "Can't copy debian files."
 cd debian || die "Can't enter debian"
 
+find . -type d -name .svn | xargs rm -rf
+
 echo >> changelog
 cat ../ChangeLog >> changelog || die "Can't update changelog."
 #rm ../ChangeLog || die "Can't remove ChangeLog."
