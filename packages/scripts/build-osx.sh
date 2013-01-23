@@ -18,6 +18,8 @@ pushd $(dirname "$_DIST") >/dev/null || die "Can't change into trunk dir."
 _DIST="$(pwd)/$(basename $_DIST)"
 popd >/dev/null
 
+mkdir -p output || die "Can't create output dir."
+
 rm -rf build/osx-build 2>/dev/null
 
 mkdir -p build/osx-build || die "Can't create build dir."
@@ -71,5 +73,7 @@ hdiutil create \
   "s3fuse-$PACKAGE_VERSION.dmg" \
   -srcfolder build/osx-build
 
+mv s3fuse-$PACKAGE_VERSION.dmg output/ || die "Can't move output image."
+
 rm -rf build/osx-build
-rmdir build >/dev/null
+rmdir build 2>/dev/null

@@ -14,6 +14,8 @@ function die()
 [[ -f "$_DIST" ]] || die "Can't find dist package [$_DIST]."
 [[ -d dist ]] || die "Run me from the top-level packaging directory."
 
+mkdir -p output || die "Can't create output dir."
+
 rm -rf build/rpm-build 2>/dev/null
 
 mkdir -p build/rpm-build || die "Can't create build dir."
@@ -28,7 +30,8 @@ cp $_DIST build/rpm-build/SOURCES || die "Can't copy source package."
 
 rpmbuild --define "_topdir $PKG_DIR/build/rpm-build" -v -v -v -v -v -ba build/rpm-build/SPECS/*.spec || die "rpmbuild failed."
 
-mv build/rpm-build/SRPMS/* . || die "No source RPMs to copy."
-mv build/rpm-build/RPMS/*/* . || die "No RPMs to copy."
+mv build/rpm-build/SRPMS/* output/. || die "Can't move source RPMs."
+mv build/rpm-build/RPMS/*/* output/. || die "Can't move RPMs."
 
 rm -rf build/rpm-build
+rmdir build 2>/dev/null
