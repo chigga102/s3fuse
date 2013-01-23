@@ -1,4 +1,6 @@
 %define name s3fuse
+%define version 0.13
+%define release 1
 
 %define debug_package %{nil}
 
@@ -42,3 +44,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 /usr/bin/s3fuse
 /usr/bin/s3fuse_gs_get_token
+/usr/bin/s3fuse_sha256_sum

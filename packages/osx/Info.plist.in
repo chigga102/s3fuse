@@ -12,7 +12,7 @@
   <key>CFBundleName</key>
   <string>s3fuse</string>
   <key>CFBundleGetInfoString</key>
-  <string>s3fuse, FUSE driver for Amazon S3, __PACKAGE_VERSION_WITH_REV__. Copyright (c) 2013, Tarick Bedeir. Licensed under the Apache License, Version 2.0.</string>
+  <string>s3fuse, FUSE driver for Amazon S3, __PACKAGE_VERSION__. Copyright (c) 2013, Tarick Bedeir. Licensed under the Apache License, Version 2.0.</string>
 
   <key>CFBundleExecutable</key>
   <string>applet</string>
