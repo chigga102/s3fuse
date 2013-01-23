@@ -32,8 +32,6 @@ cp $_DIST ${TAR_NAME/-/_}.orig.tar.gz || die "Failed to copy tarball."
 tar xfz $_DIST || die "Failed to unpack tarball."
 cd * || die "Failed to enter source dir."
 
-#tar -x --no-anchored --strip-components=1 -z -f $_DIST ChangeLog || die "Failed to extract ChangeLog."
-
 cp -r $PKG_DIR/debian . || die "Can't copy debian files."
 cd debian || die "Can't enter debian"
 
@@ -41,7 +39,6 @@ find . -type d -name .svn | xargs rm -rf
 
 echo >> changelog
 cat ../ChangeLog >> changelog || die "Can't update changelog."
-#rm ../ChangeLog || die "Can't remove ChangeLog."
 
 debuild || die "debuild failed."
 
