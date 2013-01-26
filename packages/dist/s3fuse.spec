@@ -21,7 +21,7 @@ Provides a FUSE filesystem driver for Amazon AWS S3 and Google Storage buckets.
 
 %build
 autoreconf --force --install
-./configure --prefix=/usr --sysconfdir=/etc
+./configure --prefix=%_prefix
 make
 
 %install
@@ -37,11 +37,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%config /etc/s3fuse.conf
+%config %_sysconfdir/s3fuse.conf
 %doc ChangeLog
 %doc COPYING
 %doc INSTALL
 %doc README
-/usr/bin/s3fuse
-/usr/bin/s3fuse_gs_get_token
-/usr/bin/s3fuse_sha256_sum
+%_mandir/man*/s3fuse*
+%_bindir/s3fuse
+%_bindir/s3fuse_gen_key
+%_bindir/s3fuse_gs_get_token
+%_bindir/s3fuse_sha256_sum
