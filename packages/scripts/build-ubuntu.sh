@@ -52,6 +52,7 @@ echo >> changelog
 cat ../ChangeLog >> changelog || die "Can't update changelog."
 
 debuild || die "debuild failed."
+debuild -S -sa || die "debuild (source) failed."
 
 cd $PKG_DIR
 
