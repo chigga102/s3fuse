@@ -35,6 +35,9 @@ BUILD_DIR=$(pwd)
 ./configure --enable-darwin --enable-osx-bundle || die "configure failed."
 make || die "make failed."
 
+cd man || die "Can't enter man dir."
+make pdfs || die "make pdfs failed."
+
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
 
 mkdir -p s3fuse.app/Contents || die "Can't create app bundle dir."
@@ -64,6 +67,8 @@ done
 
 cd $PKG_DIR || die "Can't enter packaging dir."
 
+mkdir build/osx-build/manual || die "Can't create manual dir."
+cp $BUILD_DIR/man/*.pdf build/osx-build/manual || die "Can't copy manual PDFs."
 cp $BUILD_DIR/COPYING $BUILD_DIR/ChangeLog $BUILD_DIR/README build/osx-build || die "Can't copy documents to image root."
 rm -rf $BUILD_DIR || die "Can't remove temporary build dir."
 
