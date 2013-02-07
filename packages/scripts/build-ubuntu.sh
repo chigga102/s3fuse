@@ -48,9 +48,6 @@ echo >> changelog
 cat changelog.debian >> changelog || die "Can't update changelog."
 rm changelog.debian || die "Can't remove debian changelog."
 
-echo >> changelog
-cat ../ChangeLog >> changelog || die "Can't update changelog."
-
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
 
