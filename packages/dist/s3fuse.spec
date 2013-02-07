@@ -20,7 +20,6 @@ Provides a FUSE filesystem driver for Amazon AWS S3 and Google Storage buckets.
 %setup -q -n %{name}-%{version}
 
 %build
-autoreconf --force --install
 ./configure --prefix=%_prefix --sysconfdir=%_sysconfdir
 make
 
