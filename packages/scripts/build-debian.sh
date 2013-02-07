@@ -37,9 +37,6 @@ cd debian || die "Can't enter debian"
 
 find . -type d -name .svn | xargs rm -rf
 
-echo >> changelog
-cat ../ChangeLog >> changelog || die "Can't update changelog."
-
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
 
