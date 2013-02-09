@@ -5,6 +5,7 @@ Maintainer: Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>
 Uploaders: Scott Ritchie <scottritchie@ubuntu.com>
 Build-Depends: debhelper (>= 7.0.50~),
                autotools-dev,
+               libboost-regex-dev,
                libboost-system-dev,
                libboost-thread-dev,
                libcurl4-nss-dev | libcurl4-openssl-dev | libcurl4-gnutls-dev,
