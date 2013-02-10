@@ -37,16 +37,8 @@ cd debian || die "Can't enter debian"
 
 find . -type d -name .svn | xargs rm -rf
 
-rm control || die "Can't remove debian control file."
 cp $PKG_DIR/ubuntu/control . || die "Can't copy Ubuntu control file."
-
-mv changelog changelog.debian || die "Can't rename debian changelog."
-
 cp $PKG_DIR/ubuntu/changelog . || die "Can't copy Ubuntu changelog."
-
-echo >> changelog
-cat changelog.debian >> changelog || die "Can't update changelog."
-rm changelog.debian || die "Can't remove debian changelog."
 
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
