@@ -1,3 +1,9 @@
+s3fuse (0.13-4) unstable; urgency=low
+
+  * Updated to release-0.13-r598.
+
+ -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sun, 10 Feb 2013 09:13:22 -0600
+
 s3fuse (0.13-3) unstable; urgency=low
 
   * Updated to trunk-r583.
