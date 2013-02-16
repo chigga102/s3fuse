@@ -21,3 +21,31 @@ s3fuse (0.13-1ubuntu1~quantal1~ppa1) quantal; urgency=low
   * Initial package for 0.13-1.
 
  -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 27 Jan 2013 15:37:51 -0600
+
+s3fuse (0.12-0ubuntu1~precise1~ppa3) precise; urgency=low
+
+  * Actually apply previous change
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Thu, 20 Sep 2012 12:30:50 -0700
+
+s3fuse (0.12-0ubuntu1~precise1~ppa2) precise; urgency=low
+
+  * debian/control:
+    - Add libssl-dev to build-dependencies
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Thu, 20 Sep 2012 10:43:41 -0700
+
+s3fuse (0.12-0ubuntu1~precise1~ppa1) precise; urgency=low
+
+  * Port to Precise
+  * debian/control:
+    - Update description
+    - Enumerate the build dependencies
+    - Set self to Maintainer
+  * debian/copyright:
+    - Convert to dep5 format
+    - Add self to packaging files copyright
+  * debian/docs:
+    - Remove extra license file and upstream install instructions
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Wed, 19 Sep 2012 22:36:20 -0700
