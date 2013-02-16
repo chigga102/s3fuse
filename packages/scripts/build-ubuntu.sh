@@ -37,8 +37,14 @@ cd debian || die "Can't enter debian"
 
 find . -type d -name .svn | xargs rm -rf
 
+rm changelog || die "Can't remove existing changelog"
 cp $PKG_DIR/ubuntu/control . || die "Can't copy Ubuntu control file."
-cp $PKG_DIR/ubuntu/changelog . || die "Can't copy Ubuntu changelog."
+
+$PKG_DIR/scripts/merge-changelogs.py \
+  $PKG_DIR/debian/changelog \
+  $PKG_DIR/ubuntu/changelog \
+  > changelog \
+  || die "Can't merge changelogs"
 
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
