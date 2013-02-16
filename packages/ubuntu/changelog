@@ -10,44 +10,14 @@ s3fuse (0.13-5ubuntu1~quantal1~ppa1) quantal; urgency=low
 
  -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 10 Feb 2013 11:21:05 -0600
 
-s3fuse (0.13-5) unstable; urgency=low
-
-  * Updated to release-0.13-r603.
-
- -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sun, 10 Feb 2013 10:59:40 -0600
-
 s3fuse (0.13-4ubuntu1~quantal1~ppa1) quantal; urgency=low
 
   * Updated for 0.13-4.
 
  -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 10 Feb 2013 10:08:25 -0600
 
-s3fuse (0.13-4) unstable; urgency=low
-
-  * Updated to release-0.13-r598.
-
- -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sun, 10 Feb 2013 09:13:22 -0600
-
-s3fuse (0.13-3) unstable; urgency=low
-
-  * Updated to trunk-r583.
-
- -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Wed, 06 Feb 2013 18:55:50 -0600
-
-s3fuse (0.13-2) unstable; urgency=low
-
-  * Updated to trunk-r567.
-
- -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sun, 27 Jan 2013 20:39:11 -0600
-
 s3fuse (0.13-1ubuntu1~quantal1~ppa1) quantal; urgency=low
 
   * Initial package for 0.13-1.
 
  -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 27 Jan 2013 15:37:51 -0600
-
-s3fuse (0.13-1) unstable; urgency=low
-
-  * Initial package for 0.13.
-
- -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sat, 26 Jan 2013 19:34:33 -0600
