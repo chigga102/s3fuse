@@ -1,6 +1,7 @@
 #!/bin/bash
 
 _DIST=$1
+_SERIES=$2
 
 PKG_DIR=$(pwd)
 
@@ -10,10 +11,11 @@ function die()
   exit 1
 }
 
-[[ ! -z "$_DIST" ]] || die "Usage: $0 <dist-tarball>"
+[[ ! -z "$_SERIES" ]] || die "Usage: $0 <dist-tarball> <series>"
 [[ -f "$_DIST" ]] || die "Can't find dist package [$_DIST]."
 [[ -d ubuntu ]] || die "Run me from the top-level packaging directory."
 [[ "$_DIST" == "${_DIST%%.tar.gz}.tar.gz" ]] || die "Tarball name needs to end in .tar.gz."
+[[ -f ubuntu/changelog-$_SERIES ]] || die "Can't find changelog for [$_SERIES]."
 
 pushd $(dirname $_DIST) >/dev/null || die "Can't enter dist dir."
 _DIST=$(pwd)/$(basename $_DIST)
@@ -42,7 +44,7 @@ cp $PKG_DIR/ubuntu/control . || die "Can't copy Ubuntu control file."
 
 $PKG_DIR/scripts/merge-changelogs.py \
   $PKG_DIR/debian/changelog \
-  $PKG_DIR/ubuntu/changelog \
+  $PKG_DIR/ubuntu/changelog-$_SERIES \
   > changelog \
   || die "Can't merge changelogs"
 

@@ -1,0 +1,33 @@
+s3fuse (0.13+release-5ubuntu1~precise1~ppa1) precise; urgency=low
+
+  * Release for 0.13-5.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Tue, 05 Mar 2013 17:21:29 -0600
+
+s3fuse (0.12-0ubuntu1~precise1~ppa3) precise; urgency=low
+
+  * Actually apply previous change
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Thu, 20 Sep 2012 12:30:50 -0700
+
+s3fuse (0.12-0ubuntu1~precise1~ppa2) precise; urgency=low
+
+  * debian/control:
+    - Add libssl-dev to build-dependencies
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Thu, 20 Sep 2012 10:43:41 -0700
+
+s3fuse (0.12-0ubuntu1~precise1~ppa1) precise; urgency=low
+
+  * Port to Precise
+  * debian/control:
+    - Update description
+    - Enumerate the build dependencies
+    - Set self to Maintainer
+  * debian/copyright:
+    - Convert to dep5 format
+    - Add self to packaging files copyright
+  * debian/docs:
+    - Remove extra license file and upstream install instructions
+
+ -- Scott Ritchie <scottritchie@ubuntu.com>  Wed, 19 Sep 2012 22:36:20 -0700
