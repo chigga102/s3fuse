@@ -1,3 +1,9 @@
+s3fuse (0.13+release-5ubuntu2~quantal1~ppa1) quantal; urgency=low
+
+  * Prefer OpenSSL over NSS.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Wed, 06 Mar 2013 17:27:19 -0600
+
 s3fuse (0.13+release-5ubuntu1~quantal1~ppa1) quantal; urgency=low
 
   * Change 0.13 to 0.13+release to correct premature Launchpad upload.
