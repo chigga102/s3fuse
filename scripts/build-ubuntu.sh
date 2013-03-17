@@ -1,0 +1,63 @@
+#!/bin/bash
+
+_DIST=$1
+_SERIES=$2
+
+PKG_DIR=$(pwd)
+
+function die()
+{
+  echo $*
+  exit 1
+}
+
+[[ ! -z "$_SERIES" ]] || die "Usage: $0 <dist-tarball> <series>"
+[[ -f "$_DIST" ]] || die "Can't find dist package [$_DIST]."
+[[ -d ubuntu ]] || die "Run me from the top-level packaging directory."
+[[ "$_DIST" == "${_DIST%%.tar.gz}.tar.gz" ]] || die "Tarball name needs to end in .tar.gz."
+[[ -f ubuntu/changelog-$_SERIES ]] || die "Can't find changelog for [$_SERIES]."
+
+pushd $(dirname $_DIST) >/dev/null || die "Can't enter dist dir."
+_DIST=$(pwd)/$(basename $_DIST)
+popd >/dev/null
+
+mkdir -p output || die "Can't create output dir."
+
+rm -rf build/ub-build
+mkdir -p build/ub-build || die "Can't create build dir."
+cd build/ub-build || die "Can't enter build dir."
+
+TAR_NAME=$(basename $_DIST)
+TAR_NAME=${TAR_NAME%%.tar.gz}
+cp $_DIST ${TAR_NAME/-/_}.orig.tar.gz || die "Failed to copy tarball."
+
+tar xfz $_DIST || die "Failed to unpack tarball."
+cd * || die "Failed to enter source dir."
+
+cp -r $PKG_DIR/debian . || die "Can't copy debian files."
+cd debian || die "Can't enter debian"
+
+find . -type d -name .svn | xargs rm -rf
+
+rm changelog || die "Can't remove existing changelog"
+cp $PKG_DIR/ubuntu/control . || die "Can't copy Ubuntu control file."
+
+$PKG_DIR/scripts/merge-changelogs.py \
+  $PKG_DIR/debian/changelog \
+  $PKG_DIR/ubuntu/changelog-$_SERIES \
+  > changelog \
+  || die "Can't merge changelogs"
+
+debuild || die "debuild failed."
+debuild -S -sa || die "debuild (source) failed."
+
+cd $PKG_DIR
+
+mv build/ub-build/*.tar.gz output/
+mv build/ub-build/*.dsc output/
+mv build/ub-build/*.build output/
+mv build/ub-build/*.changes output/
+mv build/ub-build/*.deb output/ || die "Can't move .deb files."
+
+rm -rf build/ub-build
+rmdir build 2>/dev/null
