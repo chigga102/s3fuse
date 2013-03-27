@@ -1,3 +1,9 @@
+s3fuse (0.14-0r698-1) unstable; urgency=low
+
+  * UNSTABLE: Initial package for 0.14 at r698.
+
+ -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Tue, 26 Mar 2013 19:31:19 -0600
+
 s3fuse (0.13-5) unstable; urgency=low
 
   * Updated to release-0.13-r603.
