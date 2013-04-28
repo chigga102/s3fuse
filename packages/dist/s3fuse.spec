@@ -1,14 +1,10 @@
-%define name s3fuse
-%define version 0.13
-%define release 1
-
 %define debug_package %{nil}
 
 Summary: FUSE Driver for AWS S3 and Google Storage
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: %{name}-%{version}.tar.gz
+Source: %{pkg_name}.tar.gz
 Group: Applications/System
 BuildRoot: %{_builddir}/%{name}-root
 License: Apache-2.0
@@ -17,7 +13,7 @@ License: Apache-2.0
 Provides a FUSE filesystem driver for Amazon AWS S3 and Google Storage buckets.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{pkg_name}
 
 %build
 ./configure --prefix=%_prefix --sysconfdir=%_sysconfdir
