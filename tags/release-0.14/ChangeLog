@@ -1,0 +1,100 @@
+s3fuse (0.14) unstable; urgency=low
+
+  * NEW: Multipart (resumable) uploads for Google Cloud Storage.
+  * NEW: Support for FV/S.
+  * NEW: Set file content type by examining extension.
+  * NEW: Set Cache-Control header with extended attribute.
+  * NEW: Allow creation of "special" files (FIFOs, devices, etc.).
+  * Allow verbosity to be specified explicitly on the command line.
+  * Fix multipart download bug that prevented some transfers from resuming.
+  * Use real user ID/group ID rather than effective IDs.
+  * Only use user ID/group ID/mode in object metadata if values are valid.
+  * Set and retrieve object creation time (on newly-created objects).
+  * Fix inconsistent state bug when reopening file immediately after closing.
+  * Various POSIX compliance fixes.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Sat, 06 Apr 2013 14:57:10 -0600
+
+s3fuse (0.13.1) unstable; urgency=low
+
+  * OS X: Fixed bug that resulted in command-line arguments being ignored.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Fri, 15 Feb 2013 20:06:26 -0600
+
+s3fuse (0.13) unstable; urgency=low
+
+  * NEW: File encryption. See README.
+  * NEW: Glacier restore requests. See README.
+  * NEW: Add least-recently-used eviction to object cache, controlled by the
+    max_objects_in_cache configuration option.
+  * NEW: OS X binaries.
+  * IMPORTANT: Removed "auth_data" configuration option. For AWS, use
+    "aws_secret_file" instead. For Google Storage, use "gs_token_file".
+  * IMPORTANT: Search for configuration file in ~/.s3fuse/s3fuse.conf before
+    trying %sysconfdir/s3fuse.conf (this is usually /etc/s3fuse.conf or
+    /usr/local/s3fuse.conf).
+  * Switched to SHA256 for file integrity check. File hash, if available, will 
+    be in the "s3fuse_sha256" extended attribute.
+  * Added standalone SHA256 hash generator ("s3fuse_sha256_hash") that uses the
+    same hash-list method as s3fuse.
+  * Changed handling of last-modified times. Some timestamps may be inaccurate 
+    (but will be correct when updated).
+  * Renamed built-in extended attributes "__content_type__" and "__etag__" to 
+    "s3fuse_content_type" and "s3fuse_etag", respectively.
+  * Removed "__md5__" extended attribute.
+  * Added note about daemon_timeout.
+  * Removed xattr_prefix configuration option and made "user." standard (Linux
+    only).
+  * Added event counters/statistics ("stats_file" config option).
+  * Made "noappledouble" and "daemon_timeout=3600" default options on OS X.
+  * Various robustness fixes.
+  * Add manual pages.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Sun, 10 Feb 2013 10:51:16 -0600
+
+s3fuse (0.12) unstable; urgency=low
+
+  * NEW: MacOS support. See README.
+  * NEW: Made AWS endpoint configurable (to support non-US buckets). 
+    See README.
+  * Set mount point UID/GID to process effective UID/GID.
+  * Fixed extended attribute bugs.
+  * Added support for curl/NSS.
+  * Fixed circular ownership bug that was causing FDs to be leaked.
+  * Made requirements compatible with RHEL6/Amazon Linux.
+  * Fixed memory leak in CURL request code.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Sat, 08 Sep 2012 19:36:13 -0600
+
+s3fuse (0.11) unstable; urgency=low
+
+  * NEW: Added Google Storage support.
+  * NEW: Moved AWS keys out of s3fuse.conf. See README.
+  * NEW: Changed required fields in s3fuse.conf. See README.
+  * On rename, remove destination rather than failing with -EEXIST.
+  * Improved error handling in FUSE init/pre-init.
+  * Invalidate parent in directory cache when child is modified.
+  * Fixed request error handling.
+  * Increased default request timeout to 30 seconds (from 10).
+  * Changed default logging level to LOG_WARNING instead of LOG_ERR.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Fri, 15 Jul 2011 19:45:59 -0500
+
+s3fuse (0.10) unstable; urgency=low
+
+  * Updated usage/help message printed by main() to match arguments.
+  * Added directory cache. 
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Thu, 30 Jun 2011 18:14:25 -0500
+
+s3fuse (0.9) unstable; urgency=low
+
+  * Moved to libxml++.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Sun, 12 Jun 2011 17:43:26 -0500
+
+s3fuse (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Wed, 01 Jun 2011 17:06:31 -0500
