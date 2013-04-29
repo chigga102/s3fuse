@@ -1,3 +1,9 @@
+s3fuse (0.14-1) unstable; urgency=low
+
+  * Initial package for 0.14.
+
+ -- Tarick Bedeir (Debian Development) <tarick@bedeir.com>  Sun, 28 Apr 2013 19:22:17 -0500
+
 s3fuse (0.14-0r727-1) unstable; urgency=low
 
   * UNSTABLE: Initial package for 0.14 at r727.
