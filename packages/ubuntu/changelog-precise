@@ -1,3 +1,9 @@
+s3fuse (0.14-1ubuntu1~precise1~ppa1) precise; urgency=low
+
+  * Initial package for 0.14-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 28 Apr 2013 19:42:12 -0500
+
 s3fuse (0.14-0r727-1ubuntu1~precise1~ppa1) precise; urgency=low
 
   * UNSTABLE: Initial package for 0.14-0r727-1.
