@@ -28,6 +28,7 @@ cd build/osx-build || die "Can't enter build dir."
 tar xfz $_DIST || die "Can't unpack tarball."
 cd * || die "Can't enter unpacked dir."
 
+PACKAGE_NAME=$(grep "^PACKAGE_NAME=" configure | sed -e "s/^PACKAGE_NAME='//" -e "s/'\$//")
 PACKAGE_VERSION=$(grep "^PACKAGE_VERSION=" configure | sed -e "s/^PACKAGE_VERSION='//" -e "s/'\$//")
 
 BUILD_DIR=$(pwd)
@@ -40,8 +41,8 @@ make pdfs || die "make pdfs failed."
 
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
 
-mkdir -p s3fuse.app/Contents || die "Can't create app bundle dir."
-cd s3fuse.app/Contents || die "Can't enter app bundle dir."
+mkdir -p $PACKAGE_NAME.app/Contents || die "Can't create app bundle dir."
+cd $PACKAGE_NAME.app/Contents || die "Can't enter app bundle dir."
 
 mkdir -p MacOS Resources/Scripts Resources/libs Resources/bin || die "Can't create content dirs."
 
@@ -49,20 +50,20 @@ sed -e "s/__PACKAGE_VERSION__/$PACKAGE_VERSION/g" < $PKG_DIR/osx/Info.plist.in >
 
 cp $PKG_DIR/osx/applet MacOS || die "Can't copy applet."
 cp $BUILD_DIR/COPYING $BUILD_DIR/ChangeLog $BUILD_DIR/README Resources || die "Can't copy documents."
-cp $BUILD_DIR/src/base/s3fuse.conf Resources || die "Can't copy config file."
+cp $BUILD_DIR/src/base/$PACKAGE_NAME.conf Resources || die "Can't copy config file."
 cp $PKG_DIR/osx/applet.icns $PKG_DIR/osx/applet.rsrc Resources || die "Can't copy applet resources."
 cp $PKG_DIR/osx/main.scpt Resources/Scripts || die "Can't copy script."
 
 cd $BUILD_DIR || die "Can't enter build dir."
 
 for F in $(grep bin_PROGRAMS src/Makefile.am | sed -e 's/^.*=//'); do
-  cp src/$F $PKG_DIR/build/osx-build/s3fuse.app/Contents/Resources/bin || die "Can't copy binary [$F]."
+  cp src/$F $PKG_DIR/build/osx-build/$PACKAGE_NAME.app/Contents/Resources/bin || die "Can't copy binary [$F]."
 done
 
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
 
-for F in s3fuse.app/Contents/Resources/bin/*; do
-  dylibbundler -od -b -x $F -d s3fuse.app/Contents/Resources/libs
+for F in $PACKAGE_NAME.app/Contents/Resources/bin/*; do
+  dylibbundler -od -b -x $F -d $PACKAGE_NAME.app/Contents/Resources/libs
 done
 
 cd $PKG_DIR || die "Can't enter packaging dir."
@@ -74,11 +75,11 @@ rm -rf $BUILD_DIR || die "Can't remove temporary build dir."
 
 hdiutil create \
   -fs HFSX -layout SPUD -format UDZO -scrub -uid 99 -gid 99 -ov \
-  -volname "s3fuse $PACKAGE_VERSION" \
-  "s3fuse-$PACKAGE_VERSION.dmg" \
+  -volname "$PACKAGE_NAME $PACKAGE_VERSION" \
+  "$PACKAGE_NAME-$PACKAGE_VERSION.dmg" \
   -srcfolder build/osx-build
 
-mv s3fuse-$PACKAGE_VERSION.dmg output/ || die "Can't move output image."
+mv $PACKAGE_NAME-$PACKAGE_VERSION.dmg output/ || die "Can't move output image."
 
 rm -rf build/osx-build
 rmdir build 2>/dev/null

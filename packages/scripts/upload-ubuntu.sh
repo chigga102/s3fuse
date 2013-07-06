@@ -13,4 +13,4 @@ if [ "${_UPLOAD%%_source.changes}_source.changes" != "$_UPLOAD" ]; then
   exit 1
 fi
 
-dput ppa:s3fuse/$_PPA $_UPLOAD
+dput ppa:$_PPA $_UPLOAD
