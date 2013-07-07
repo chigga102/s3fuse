@@ -1,0 +1,5 @@
+gcsfs (0.15-0r747M-1) unstable; urgency=low
+
+  * Repackaging for gcsfs.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Sat, 06 Jul 2013 18:47:11 -0700

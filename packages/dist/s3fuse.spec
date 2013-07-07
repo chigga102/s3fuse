@@ -36,13 +36,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%config %_sysconfdir/s3fuse.conf
+%config %_sysconfdir/%{name}.conf
 %doc ChangeLog
 %doc COPYING
 %doc INSTALL
 %doc README
-%_mandir/man*/s3fuse*
-%_bindir/s3fuse
-%_bindir/s3fuse_gs_get_token
-%_bindir/s3fuse_sha256_sum
-%_bindir/s3fuse_vol_key
+%_mandir/man*/${name}*
+%_bindir/%{name}*

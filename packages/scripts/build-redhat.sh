@@ -14,6 +14,17 @@ function die()
 [[ -f "$_DIST" ]] || die "Can't find dist package [$_DIST]."
 [[ -d dist ]] || die "Run me from the top-level packaging directory."
 
+CL_FILE="$(basename $_DIST)"
+CL_FILE="${CL_FILE%%-*}"
+
+if [ "$CL_FILE" == "s3fuse" ]; then
+  CL_FILE=changelog
+else
+  CL_FILE="changelog.$CL_FILE"
+fi
+
+[[ -f "dist/$CL_FILE" ]] || die "Expected to find changelog file [dist/$CL_FILE]."
+
 mkdir -p output || die "Can't create output dir."
 
 rm -rf build/rpm-build 2>/dev/null
@@ -28,8 +39,8 @@ cd $PKG_DIR
 cp dist/*.spec build/rpm-build/SPECS || die "Can't copy spec file."
 cp $_DIST build/rpm-build/SOURCES || die "Can't copy source package."
 
-CL_APP="$(head -n 1 dist/changelog | sed -e 's/ (.*//')"
-CL_FULL_VERSION="$(head -n 1 dist/changelog | sed -e 's/.* (//' -e 's/).*//')"
+CL_APP="$(head -n 1 dist/$CL_FILE | sed -e 's/ (.*//')"
+CL_FULL_VERSION="$(head -n 1 dist/$CL_FILE | sed -e 's/.* (//' -e 's/).*//')"
 CL_VERSION="${CL_FULL_VERSION%%-*}"
 CL_RELEASE="${CL_FULL_VERSION#*-}"
 CL_RELEASE="${CL_RELEASE//-/_}"
