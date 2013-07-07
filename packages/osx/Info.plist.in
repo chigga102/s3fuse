@@ -8,11 +8,11 @@
   <string>6.0</string>
 
   <key>CFBundleIdentifier</key>
-  <string>com.bedeir.apps.s3fuse</string>
+  <string>com.bedeir.apps.__PACKAGE_NAME__</string>
   <key>CFBundleName</key>
-  <string>s3fuse</string>
+  <string>__PACKAGE_NAME__</string>
   <key>CFBundleGetInfoString</key>
-  <string>s3fuse, FUSE driver for Amazon S3, __PACKAGE_VERSION__. Copyright (c) 2013, Tarick Bedeir. Licensed under the Apache License, Version 2.0.</string>
+  <string>__PACKAGE_NAME__, FUSE driver for cloud object storage services, __PACKAGE_VERSION__. Copyright (c) 2013, Tarick Bedeir. Licensed under the Apache License, Version 2.0.</string>
 
   <key>CFBundleExecutable</key>
   <string>applet</string>

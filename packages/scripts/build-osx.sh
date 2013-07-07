@@ -46,13 +46,24 @@ cd $PACKAGE_NAME.app/Contents || die "Can't enter app bundle dir."
 
 mkdir -p MacOS Resources/Scripts Resources/libs Resources/bin || die "Can't create content dirs."
 
-sed -e "s/__PACKAGE_VERSION__/$PACKAGE_VERSION/g" < $PKG_DIR/osx/Info.plist.in > Info.plist || die "Can't generate plist."
+for F in $PKG_DIR/osx/*.in; do
+  NEW_FN="$(basename $F)"
+  NEW_FN="${NEW_FN%%.in}"
+
+  sed \
+    -e "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" \
+    -e "s/__PACKAGE_VERSION__/$PACKAGE_VERSION/g" \
+    < $F \
+    > $NEW_FN || die "Can't transform template."
+done
+
+osacompile -o Resources/Scripts/main.scpt main.applescript || die "Can't compile script."
+rm -f main.applescript
 
 cp $PKG_DIR/osx/applet MacOS || die "Can't copy applet."
 cp $BUILD_DIR/COPYING $BUILD_DIR/ChangeLog $BUILD_DIR/README Resources || die "Can't copy documents."
 cp $BUILD_DIR/src/base/$PACKAGE_NAME.conf Resources || die "Can't copy config file."
 cp $PKG_DIR/osx/applet.icns $PKG_DIR/osx/applet.rsrc Resources || die "Can't copy applet resources."
-cp $PKG_DIR/osx/main.scpt Resources/Scripts || die "Can't copy script."
 
 cd $BUILD_DIR || die "Can't enter build dir."
 
