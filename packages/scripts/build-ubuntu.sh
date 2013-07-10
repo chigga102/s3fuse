@@ -17,6 +17,12 @@ function die()
 [[ "$_DIST" == "${_DIST%%.tar.gz}.tar.gz" ]] || die "Tarball name needs to end in .tar.gz."
 [[ -f ubuntu/changelog-$_SERIES ]] || die "Can't find changelog for [$_SERIES]."
 
+DIST_NAME="$(basename $_DIST)"
+DIST_NAME="${CL_FILE%%-*}"
+CL_FILE="changelog.$DIST_NAME.$_SERIES"
+
+[[ -f "ubuntu/$CL_FILE" ]] || die "Expected to find changelog file [ubuntu/$CL_FILE]."
+
 pushd $(dirname $_DIST) >/dev/null || die "Can't enter dist dir."
 _DIST=$(pwd)/$(basename $_DIST)
 popd >/dev/null
@@ -39,12 +45,20 @@ cd debian || die "Can't enter debian"
 
 find . -type d -name .svn | xargs rm -rf
 
-rm changelog || die "Can't remove existing changelog"
-cp $PKG_DIR/ubuntu/control . || die "Can't copy Ubuntu control file."
+rm changelog.* || die "Can't remove existing changelog"
+cp $PKG_DIR/ubuntu/control.in . || die "Can't copy Ubuntu control file."
+
+for F in *.in; do
+  sed \
+    -e "s/__PACKAGE_NAME__/$CL_APP/g" \
+    -e "s/__PACKAGE_VERSION__/$CL_FULL_VERSION/g" \
+    < $F \
+    > ${F%%.in}
+done
 
 $PKG_DIR/scripts/merge-changelogs.py \
-  $PKG_DIR/debian/changelog \
-  $PKG_DIR/ubuntu/changelog-$_SERIES \
+  $PKG_DIR/debian/changelog.$DIST_NAME \
+  $PKG_DIR/ubuntu/changelog.$DIST_NAME.$_SERIES \
   > changelog \
   || die "Can't merge changelogs"
 

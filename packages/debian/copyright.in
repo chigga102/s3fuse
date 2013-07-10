@@ -1,6 +1,6 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: s3fuse
-Source: http://code.google.com/p/s3fuse/downloads/list
+Upstream-Name: __PACKAGE_NAME__
+Source: http://code.google.com/p/__PACKAGE_NAME__/downloads/list
 
 Files: *
 Copyright: 2012 Tarick Bedeir <tarick@bedeir.com>

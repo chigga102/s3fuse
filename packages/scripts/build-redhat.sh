@@ -16,12 +16,7 @@ function die()
 
 CL_FILE="$(basename $_DIST)"
 CL_FILE="${CL_FILE%%-*}"
-
-if [ "$CL_FILE" == "s3fuse" ]; then
-  CL_FILE=changelog
-else
-  CL_FILE="changelog.$CL_FILE"
-fi
+CL_FILE="changelog.$CL_FILE"
 
 [[ -f "dist/$CL_FILE" ]] || die "Expected to find changelog file [dist/$CL_FILE]."
 
