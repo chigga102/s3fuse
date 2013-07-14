@@ -15,7 +15,6 @@ function die()
 [[ -f "$_DIST" ]] || die "Can't find dist package [$_DIST]."
 [[ -d ubuntu ]] || die "Run me from the top-level packaging directory."
 [[ "$_DIST" == "${_DIST%%.tar.gz}.tar.gz" ]] || die "Tarball name needs to end in .tar.gz."
-[[ -f ubuntu/changelog-$_SERIES ]] || die "Can't find changelog for [$_SERIES]."
 
 DIST_NAME="$(basename $_DIST)"
 DIST_NAME="${CL_FILE%%-*}"
