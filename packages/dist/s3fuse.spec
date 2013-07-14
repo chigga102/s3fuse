@@ -41,5 +41,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING
 %doc INSTALL
 %doc README
-%_mandir/man*/${name}*
+%_mandir/man*/%{name}*
 %_bindir/%{name}*
