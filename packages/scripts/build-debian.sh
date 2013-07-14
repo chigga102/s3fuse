@@ -42,7 +42,7 @@ cp -r $PKG_DIR/debian . || die "Can't copy debian files."
 cd debian || die "Can't enter debian"
 
 rm -f changelog.* || die "Can't remove changelogs."
-cp $PKG_DIR/debian/changelog.$CL_FILE changelog || die "Can't copy build-specific changelog."
+cp $PKG_DIR/debian/$CL_FILE changelog || die "Can't copy build-specific changelog."
 
 CL_APP="$(head -n 1 changelog | sed -e 's/ (.*//')"
 CL_FULL_VERSION="$(head -n 1 changelog | sed -e 's/.* (//' -e 's/).*//')"
