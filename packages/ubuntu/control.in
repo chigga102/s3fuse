@@ -10,11 +10,8 @@ Build-Depends: debhelper (>= 7.0.50~),
                libboost-thread-dev,
                libcurl4-openssl-dev | libcurl4-nss-dev | libcurl4-gnutls-dev,
                libfuse-dev,
-               libglibmm-2.4-dev,
-               libsigc++-2.0-dev,
                libssl-dev,
                libstdc++6-4.6-dev | libstdc++-dev,
-               libxml++2.6-dev,
                libxml2-dev
 Standards-Version: 3.9.3
 
