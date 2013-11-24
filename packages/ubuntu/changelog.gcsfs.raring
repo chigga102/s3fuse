@@ -1,3 +1,9 @@
+gcsfs (0.15-1ubuntu1~raring1~ppa1) raring; urgency=low
+
+  * Initial package for 0.15-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Wed, 06 Nov 2013 17:09:43 -0600
+
 gcsfs (0.15-0r747M-1ubuntu1~raring1~ppa1) raring; urgency=low
 
   * Initial package for gcsfs 0.15-0r747M.

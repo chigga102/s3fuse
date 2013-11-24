@@ -1,3 +1,9 @@
+gcsfs (0.15-1) unstable; urgency=low
+
+  * Initial package for 0.15.
+
+ -- Tarick Bedeir <tarick@bedeir.com>  Wed, 06 Nov 2013 17:06:10 -0600
+
 gcsfs (0.15-0r747M-1) unstable; urgency=low
 
   * Repackaging for gcsfs.
