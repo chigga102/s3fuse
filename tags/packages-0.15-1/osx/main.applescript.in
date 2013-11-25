@@ -1,0 +1,5 @@
+tell application "Terminal"
+	do script quoted form of POSIX path of (path to me) & "Contents/Resources/bin/__PACKAGE_NAME__; exit"
+	activate
+end tell
+quit
