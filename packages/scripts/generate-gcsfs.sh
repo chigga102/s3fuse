@@ -44,17 +44,6 @@ echo "done"
 
 CL_DATE="$(date '+%a, %d %b %Y %H:%M:%S %z')"
 
-echo "updating configure.ac"
-
-mv configure.ac configure.ac.orig
-sed \
-  -e "s/^\(service_default_.*\)=true/\1=false/" \
-  -e "s/^service_default_gs=.*/service_default_gs=true/" \
-  < configure.ac.orig \
-  > configure.ac
-
-rm configure.ac.orig
-
 echo "updating changelog"
 
 mv ChangeLog ChangeLog.orig
