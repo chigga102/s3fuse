@@ -1,0 +1,5 @@
+s3fuse (0.15-1ubuntu1~saucy1~ppa1) saucy; urgency=low
+
+  * Initial package for 0.15-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Wed, 06 Nov 2013 17:12:22 -0600
